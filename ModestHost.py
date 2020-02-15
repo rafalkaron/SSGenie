@@ -16,10 +16,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import threading
 
-__version__ = "0.2"
+__version__ = "0.3"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
-
-
 
 def open_chrome_localhost():
     chrome_options = webdriver.ChromeOptions()
@@ -30,9 +28,6 @@ def open_chrome_localhost():
 
 def start_server():
     PORT = 8000
-    _script_filepath = os.path.abspath(__file__)
-    _script_filename = os.path.basename(__file__)
-    _script_directory = _script_filepath.replace(_script_filename, "").replace("\\", "/")
     socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler).serve_forever()
 """
 def stop_server():
