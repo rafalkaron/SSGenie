@@ -15,7 +15,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 #import webbrowser
-from multiprocessing import Process
+import threading
 
 __version__ = "0.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
@@ -36,19 +36,14 @@ def start_server():
     _script_filepath = os.path.abspath(__file__)
     _script_filename = os.path.basename(__file__)
     _script_directory = _script_filepath.replace(_script_filename, "").replace("\\", "/")
-    open_chrome_localhost()
     socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler).serve_forever()
-    print("Serving files from " + _script_directory + " at localhost:" + str(PORT))
 
 def stop_server():
     _exit_prompt = input("To finish, press [Enter]")
     if _exit_prompt:
         exit(0)
 
-if __name__ == '__main__':
-    procs = []
-    procs.append(Process(target=open_chrome_localhost, args=('bob',)))
-    procs.append(Process(target=start_server, args=('sir',)))
-    map(lambda x: x.start(), procs)
+t1 = threading.Thread(target=start_server)
+t1.start()
 
-start_server()
+open_chrome_localhost()
