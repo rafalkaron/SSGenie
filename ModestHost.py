@@ -16,13 +16,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import threading
 
-__version__ = "0.3"
+__version__ = "0.4"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 def open_chrome_localhost():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("useAutomationExtension", False)
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"]) 
+    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    chrome_options.add_argument("--start-maximized")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     driver.get("localhost:8000")
 
