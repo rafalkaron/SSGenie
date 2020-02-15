@@ -1,2 +1,2 @@
-# SSGenie
- Quickly host files on localhost
+# ModestHost
+Quickly host files from the ModestHost directory.
