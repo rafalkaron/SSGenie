@@ -15,7 +15,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 #import webbrowser
-import subprocess
+from multiprocessing import Process
 
 __version__ = "0.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
@@ -45,4 +45,10 @@ def stop_server():
     if _exit_prompt:
         exit(0)
 
-subprocess.Popen(start_server())
+if __name__ == '__main__':
+    procs = []
+    procs.append(Process(target=open_chrome_localhost, args=('bob',)))
+    procs.append(Process(target=start_server, args=('sir',)))
+    map(lambda x: x.start(), procs)
+
+start_server()
