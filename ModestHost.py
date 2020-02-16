@@ -21,6 +21,14 @@ __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 PORT = 8000
 
+def start_server():
+    httpd = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
+    try:
+        httpd.serve_forever()
+    except socketserver.socket.error:
+        print("just work already")
+        start_server()
+
 def open_chrome_localhost():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("useAutomationExtension", False)
@@ -29,22 +37,9 @@ def open_chrome_localhost():
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     driver.get("localhost:"+str(PORT))
 
-def start_server():
-    httpd = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
-    httpd.allow_reuse_address = True
-    httpd.serve_forever()   
-
 def main():
-    PORT = 8000
     t1 = threading.Thread(target=start_server)
-    while True:
-        try: 
-            t1.start()
-        except socketserver.socket.error:
-            print("except_test")
-            PORT += 1
-        else:
-            break
+    t1.start()
     open_chrome_localhost() 
 
 main()
