@@ -32,7 +32,13 @@ def open_chrome_localhost():
 def start_server():
     global server
     server = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
-    server.serve_forever()
+    
+    try:
+        server.serve_forever()
+    except OSError:
+        server.server_close()
+        server.shutdown()
+        server.serve_forever()
 
 def stop_server():
     #_exit_prompt = input("To finish, press [Enter]")
