@@ -19,16 +19,17 @@ import threading
 __version__ = "0.4"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
+PORT = 8000
+
 def open_chrome_localhost():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_argument("--start-maximized")
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-    driver.get("localhost:8000")
+    driver.get("localhost:"+str(PORT))
 
 def start_server():
-    PORT = 8000
     global server
     server = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
     server.serve_forever()
