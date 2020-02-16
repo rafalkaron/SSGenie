@@ -35,8 +35,16 @@ def start_server():
     httpd.serve_forever()   
 
 def main():
+    PORT = 8000
     t1 = threading.Thread(target=start_server)
-    t1.start()
-    open_chrome_localhost()
+    while True:
+        try: 
+            t1.start()
+        except socketserver.socket.error:
+            print("except_test")
+            PORT += 1
+        else:
+            break
+    open_chrome_localhost() 
 
 main()
