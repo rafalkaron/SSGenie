@@ -23,11 +23,8 @@ PORT = 8000
 
 def start_server():
     httpd = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
-    try:
-        httpd.serve_forever()
-    except socketserver.socket.error:
-        print("just work already")
-        start_server()
+    httpd.allow_reuse_address=True
+    httpd.serve_forever()
 
 def open_chrome_localhost():
     chrome_options = webdriver.ChromeOptions()
@@ -40,6 +37,6 @@ def open_chrome_localhost():
 def main():
     t1 = threading.Thread(target=start_server)
     t1.start()
-    open_chrome_localhost() 
+    open_chrome_localhost()
 
 main()
