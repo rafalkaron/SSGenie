@@ -7,12 +7,10 @@
 
     *********************************************************
 """
-
-
-import ModestHost
+import os
 
 __version__ = "0.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
-
-ModestHost.stop_server()
+os.popen("pkill -9 -f ModestHost.py")
+exit(0)
