@@ -30,22 +30,9 @@ def open_chrome_localhost():
     driver.get("localhost:"+str(PORT))
 
 def start_server():
-    global server
-    server = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
-    
-    try:
-        server.serve_forever()
-    except OSError:
-        server.server_close()
-        server.shutdown()
-        server.serve_forever()
-
-def stop_server():
-    #_exit_prompt = input("To finish, press [Enter]")
-    #if _exit_prompt:
-    server.server_close()
-    server.shutdown()
-    exit(0)
+    httpd = socketserver.TCPServer(("localhost", PORT), http.server.SimpleHTTPRequestHandler)
+    httpd.allow_reuse_address = True
+    httpd.serve_forever()   
 
 def main():
     t1 = threading.Thread(target=start_server)
