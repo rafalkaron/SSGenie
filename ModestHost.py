@@ -19,17 +19,24 @@ import threading
 __version__ = "0.4"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
-PORT = 8000
-address = "localhost"
-
-host_dir = os.path.join(os.path.dirname(__file__))
-os.chdir(host_dir)
+def current_dir():
+    global host_dir
+    host_dir = os.path.join(os.path.dirname(__file__))
+    os.chdir(host_dir)
 
 def start_server():
+    global PORT
+    PORT = 8000
+    global address
+    address = "localhost"
     print("\n>>> Hosting files from " + host_dir + " on " + address + ":" + str(PORT)+"\n")
-    httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-    httpd.allow_reuse_address=True
-    httpd.serve_forever()
+    try:
+        httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
+        httpd.serve_forever()
+    except:
+        PORT += 1
+        httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
+        httpd.serve_forever()
 
 def open_chrome_localhost():
     print(">>> Opening a default Google Chrome instance on "+ address + ":" + str(PORT))
@@ -37,10 +44,11 @@ def open_chrome_localhost():
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_argument("--start-maximized")
-    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
-    driver.get(address + ":"+str(PORT))
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    driver.get(address +":"+str(PORT))
 
 def main():
+    current_dir()
     t1 = threading.Thread(target=start_server)
     t1.start()
     open_chrome_localhost()
