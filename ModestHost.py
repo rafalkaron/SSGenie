@@ -21,7 +21,7 @@ __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 def current_dir():
     global host_dir
-    host_dir = os.path.join(os.path.dirname(__file__))
+    host_dir = os.getcwd()
     os.chdir(host_dir)
 
 def start_server():
