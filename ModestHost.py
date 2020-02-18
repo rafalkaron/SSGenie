@@ -19,6 +19,8 @@ import threading
 __version__ = "0.4"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
+address = "localhost"
+
 def enter_dir():
     global host_dir
     try:
@@ -33,21 +35,23 @@ def current_dir():
     host_dir = os.getcwd()
     os.chdir(host_dir)
 
+def server():
+    httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
+    httpd.serve_forever()
+
 def start_server():
     global PORT
     PORT = 8000
-    global address
-    address = "localhost"
-    print("\n>>> Hosting files from " + host_dir + " on " + address + ":" + str(PORT)+"\n")
+    #print("\n>>> Hosting files from " + host_dir + " on " + address + ":" + str(PORT)+"\n")
     while True:
         try:
-            httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-            httpd.serve_forever()
+            server()
         except:
             PORT += 1
-            httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-            httpd.serve_forever()
-   
+            server()
+        finally:
+            continue
+        break
 
 
 def open_chrome_localhost():
@@ -60,9 +64,9 @@ def open_chrome_localhost():
     driver.get(address +":"+str(PORT))
 
 def main():
-    if os.name=="posix":
-        enter_dir()
     if os.name=="nt":
+        enter_dir()
+    if os.name=="posix":
         current_dir()
     t1 = threading.Thread(target=start_server)
     t1.start()
