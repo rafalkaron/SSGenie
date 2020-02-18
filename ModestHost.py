@@ -28,19 +28,22 @@ def current_dir():
     os.chdir(host_dir)
 
 def start_server():
-
+    global PORT
+    PORT = 8000
     global address
     address = "localhost"
     print("\n>>> Hosting files from " + host_dir + " on " + address + ":" + str(PORT)+"\n")
     try:
-        global PORT
-        PORT = 8000
         httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
         httpd.serve_forever()
+    #except:
+    #    PORT += 1
+    #    httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
+    #    httpd.serve_forever()
     except:
-        PORT += 1
-        httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-        httpd.serve_forever()
+        httpd.shutdown()
+        httpd.server_close()
+        
 
 
 def open_chrome_localhost():
