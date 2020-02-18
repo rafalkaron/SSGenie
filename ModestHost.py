@@ -19,24 +19,29 @@ import threading
 __version__ = "0.4"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
+def enter_dir():
+    host_dir = input("Enter the full path to the directory containing files that you want to host: ")
+
 def current_dir():
     global host_dir
     host_dir = os.getcwd()
     os.chdir(host_dir)
 
 def start_server():
-    global PORT
-    PORT = 8000
+
     global address
     address = "localhost"
     print("\n>>> Hosting files from " + host_dir + " on " + address + ":" + str(PORT)+"\n")
     try:
+        global PORT
+        PORT = 8000
         httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
         httpd.serve_forever()
     except:
         PORT += 1
         httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
         httpd.serve_forever()
+
 
 def open_chrome_localhost():
     print(">>> Opening a default Google Chrome instance on "+ address + ":" + str(PORT))
