@@ -17,7 +17,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import threading
 
-__version__ = "0.4"
+__version__ = "0.5"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
