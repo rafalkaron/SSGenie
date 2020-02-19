@@ -84,7 +84,7 @@ def main():
         enter_dir()
     if os.name=="posix":
         #try:
-        target_dir = str(sys.argv[0].replace("ModestHost.py", ""))
+        target_dir = str(sys.argv[0])
         os.chdir(target_dir)
         #except:
         #    current_dir()
