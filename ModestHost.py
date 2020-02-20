@@ -31,11 +31,13 @@ if getattr(sys, 'frozen', False):
 else:
         # we are running in a normal Python environment
         bundle_dir = os.path.dirname(os.path.abspath(__file__))
+"""
 print( 'we are',frozen,'frozen')
 print( 'bundle dir is', bundle_dir )
 print( 'sys.argv[0] is', sys.argv[0] )
 print( 'sys.executable is', sys.executable )
 print( 'os.getcwd is', os.getcwd() )
+"""
 
 def enter_dir():
     global host_dir
@@ -85,6 +87,7 @@ def main():
     if os.name=="posix":
         #try:
         target_dir = str(sys.argv[0].replace("ModestHost.py", "").replace("/ModestHost", ""))
+        #target_dir = str(sys.argv[0].replace("/ModestHost/ModestHost.py", ""))
         os.chdir(target_dir)
         #except:
         #    current_dir()
