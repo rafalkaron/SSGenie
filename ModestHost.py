@@ -86,5 +86,5 @@ def main():
     t1 = threading.Thread(target=start_server)
     t1.start()
     open_chrome_localhost()
-
+ 
 main()
