@@ -17,7 +17,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import threading
 
-__version__ = "0.5"
+__version__ = "0.6"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
@@ -34,7 +34,7 @@ def server():
 def start_server():
     global PORT
     PORT = 8000
-    print("\n>>> Hosting files from " + application_path + " on " + address + ":" + str(PORT)+"\n")
+    print(">>> Hosting files from " + application_path + " on " + address + ":" + str(PORT)+"\n")
     while True:
         try:
             server()
