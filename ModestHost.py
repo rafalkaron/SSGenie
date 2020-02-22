@@ -1,8 +1,7 @@
 #coding: utf-8
 """
-    ModestHost (Codename: SSGenie)
+    ModestHost
     *********************************************************
-
     Quickly host files from the ModestHost directory.
 
     *********************************************************
@@ -17,15 +16,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import threading
 
-__version__ = "0.6"
+__version__ = "0.7"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
-
 if getattr(sys, 'frozen', False):
-    application_path = os.path.dirname(sys.executable)
+    app_path = os.path.dirname(sys.executable)
 elif __file__:
-    application_path = os.path.dirname(__file__)
+    app_path = os.path.dirname(__file__)
 
 def server():
     httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
@@ -34,7 +32,7 @@ def server():
 def start_server():
     global PORT
     PORT = 8000
-    print(">>> Hosting files from " + application_path + " on " + address + ":" + str(PORT)+"\n")
+    print(">>> Hosting files from " + app_path + " on " + address + ":" + str(PORT)+"\n")
     while True:
         try:
             server()
@@ -46,7 +44,7 @@ def start_server():
         break
 
 def open_chrome_localhost():
-    print(">>> Opening a default Google Chrome instance on "+ address + ":" + str(PORT))
+    print(">>> Opening " + address + ":" + str(PORT) + " in vanilla Google Chrome")
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_experimental_option("useAutomationExtension", False)
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -55,7 +53,7 @@ def open_chrome_localhost():
     driver.get(address +":"+str(PORT))
 
 def main():
-    os.chdir(application_path)
+    os.chdir(app_path)
     t1 = threading.Thread(target=start_server)
     t1.start()
     open_chrome_localhost()
