@@ -54,6 +54,8 @@ def open_chrome_localhost():
 
 def main():
     os.chdir(app_path)
+    if os.name=="posix":
+        os.chdir("../../../") ##This is for app bundle
     t1 = threading.Thread(target=start_server)
     t1.start()
     open_chrome_localhost()
