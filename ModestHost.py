@@ -27,7 +27,7 @@ elif __file__:
 def start_server():
     print("Trying to host files from " + app_path + " on:")
     global PORT
-    for PORT in range(7999,9000):
+    for PORT in range(7999, 9000):
         while True:
             try:
                 PORT +=1
