@@ -9,6 +9,7 @@
 
 import http.server
 import socketserver
+import webbrowser
 import os
 import sys
 from selenium import webdriver
@@ -52,11 +53,17 @@ def open_chrome_localhost():
     driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     driver.get(address +":"+str(PORT))
 
+def open_default_localhost():
+    print(">>> Opening " + address + ":" + str(PORT) + " in your web browser")
+    if os.name=="posix":
+        webbrowser.open(url="http://" + address +":"+str(PORT) , new=1, autoraise=True) #needs https to operate
+
 def main():
     os.chdir(app_path)
     if os.name=="posix":
-        os.chdir("../../../") ##This is for app bundle
+        os.chdir("../../../") # This is for app bundle
     t1 = threading.Thread(target=start_server)
     t1.start()
-    open_chrome_localhost()
+    open_default_localhost()
+    #open_chrome_localhost()
 main()
