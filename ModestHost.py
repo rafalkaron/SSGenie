@@ -12,12 +12,10 @@ import socketserver
 import webbrowser
 import os
 import sys
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
 import threading
+import time
 
-__version__ = "0.8"
+__version__ = "0.0"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
@@ -26,14 +24,10 @@ if getattr(sys, 'frozen', False):
 elif __file__:
     app_path = os.path.dirname(__file__)
 
-def server():
-    httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-    httpd.serve_forever()
-
 def start_server():
+    print("Trying to host files from " + app_path + " on:")
     global PORT
     PORT = 8000
-    print(">>> Hosting files from " + app_path + " on " + address + ":" + str(PORT)+"\n")
     while True:
         try:
             server()
@@ -44,19 +38,15 @@ def start_server():
             continue
         break
 
-def open_chrome_localhost():
-    print(">>> Opening " + address + ":" + str(PORT) + " in vanilla Google Chrome")
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_experimental_option("useAutomationExtension", False)
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    chrome_options.add_argument("--start-maximized")
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
-    driver.get(address +":"+str(PORT))
+def server():
+    print(" - " + address +":" +str(PORT))
+    httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
+    httpd.serve_forever()
 
 def open_default_localhost():
-    print(">>> Opening " + address + ":" + str(PORT) + " in your web browser")
-    if os.name=="posix":
-        webbrowser.open(url="http://" + address +":"+str(PORT) , new=1, autoraise=True) #needs https to operate
+    time.sleep(1) # This won't be needed once I rework the loop
+    print("Opening " + address + ":" + str(PORT) + " in your default web browser")
+    webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)
 
 def main():
     os.chdir(app_path)
@@ -65,5 +55,4 @@ def main():
     t1 = threading.Thread(target=start_server)
     t1.start()
     open_default_localhost()
-    #open_chrome_localhost()
 main()
