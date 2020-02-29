@@ -27,7 +27,8 @@ elif __file__:
     app_path = os.path.dirname(__file__)
 
 def start_server():
-    print("Trying to host files from " + app_path + " on:")
+    global info_starting_server
+    info_starting_server = print("Trying to host files from " + app_path + " on:")
     global PORT
     PORT = 7999
     while True:
