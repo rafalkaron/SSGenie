@@ -56,6 +56,7 @@ def main():
     t1.start()
     while True:
         try:
+            time.sleep(1)
             open_default_localhost()
         except:
             time.sleep(1)
