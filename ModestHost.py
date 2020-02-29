@@ -54,14 +54,17 @@ def main():
         os.chdir("../../../") # Needed if you want to compile this as a macOS bundle/app.
     t1 = threading.Thread(target=start_server)
     t1.start()
+    """
+    while PORT is None:
+        print("test")
+    """
     while True:
         try:
-            time.sleep(1)
             open_default_localhost()
-        except:
-            time.sleep(1)
+        except(NameError):
+            print("looptest")
             continue
-        else:
-            print("Canot open your web browser. Reboot your workstation and try again.")
         break
-main()
+
+if __name__ == '__main__':
+    main()
