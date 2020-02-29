@@ -15,10 +15,11 @@ import sys
 import threading
 import time
 
-__version__ = "0.0"
+__version__ = "0.9"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
+
 if getattr(sys, 'frozen', False):
     app_path = os.path.dirname(sys.executable)
 elif __file__:
@@ -27,14 +28,14 @@ elif __file__:
 def start_server():
     print("Trying to host files from " + app_path + " on:")
     global PORT
-    for PORT in range(7999, 9000):
-        while True:
-            try:
-                PORT +=1
-                server()
-            except:
-                continue
-            break
+    PORT = 7999
+    while True:
+        try:
+            PORT +=1
+            server()
+        except:
+            continue
+        break
 
 def server():
     print(" - " + address +":" +str(PORT))
