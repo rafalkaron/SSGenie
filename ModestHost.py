@@ -13,7 +13,6 @@ import webbrowser
 import os
 import sys
 import threading
-import time
 
 __version__ = "0.9"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
@@ -35,6 +34,8 @@ def start_server():
             server()
         except:
             continue
+        else:
+            print("Cannot host files on localhost. Reboot your workstation and try again.")
         break
 
 def server():
@@ -43,15 +44,21 @@ def server():
     httpd.serve_forever()
 
 def open_default_localhost():
-    time.sleep(1) # This won't be needed once I rework the loop
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
     webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)
 
 def main():
     os.chdir(app_path)
     if os.name=="posix":
-        os.chdir("../../../") # This is for app bundle
+        os.chdir("../../../") # Needed if you want to compile this as a macOS bundle/app.
     t1 = threading.Thread(target=start_server)
     t1.start()
-    open_default_localhost()
+    while True:
+        try:
+            open_default_localhost()
+        except:
+            continue
+        else:
+            print("Canot open your web browser. Reboot your workstation and try again.")
+        break
 main()
