@@ -19,6 +19,7 @@ __version__ = "0.9"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
+PORT = None
 
 if getattr(sys, 'frozen', False):
     app_path = os.path.dirname(sys.executable)
@@ -54,17 +55,11 @@ def main():
         os.chdir("../../../") # Needed if you want to compile this as a macOS bundle/app.
     t1 = threading.Thread(target=start_server)
     t1.start()
-    """
+
     while PORT is None:
-        print("test")
-    """
-    while True:
-        try:
-            open_default_localhost()
-        except(NameError):
-            print("looptest")
-            continue
-        break
+        time.sleep(1)
+    
+    open_default_localhost()
 
 if __name__ == '__main__':
     main()
