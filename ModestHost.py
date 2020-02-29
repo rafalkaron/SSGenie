@@ -13,6 +13,7 @@ import webbrowser
 import os
 import sys
 import threading
+import time
 
 __version__ = "0.9"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
@@ -57,6 +58,7 @@ def main():
         try:
             open_default_localhost()
         except:
+            time.sleep(1)
             continue
         else:
             print("Canot open your web browser. Reboot your workstation and try again.")
