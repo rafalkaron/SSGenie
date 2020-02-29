@@ -55,10 +55,8 @@ def main():
         os.chdir("../../../") # Needed if you want to compile this as a macOS bundle/app.
     t1 = threading.Thread(target=start_server)
     t1.start()
-
     while PORT is None:
         time.sleep(1)
-    
     open_default_localhost()
 
 if __name__ == '__main__':
