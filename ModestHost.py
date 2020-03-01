@@ -58,9 +58,10 @@ def main():
     t2 = threading.Thread(target=open_default_localhost)
 
     t1.start()
-    #while PORT is None:
-    #    time.sleep(1)
+    while PORT is None:
+        time.sleep(1)
     t2.start()
+    t1.join()
     t2.join()
     
 if __name__ == '__main__':
