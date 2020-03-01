@@ -63,8 +63,9 @@ def main():
     while PORT is None:
         time.sleep(1)
     t2.start()
-    t1.join()
     t2.join()
+    t1.join()
+
     
 if __name__ == '__main__':
     main()
