@@ -43,8 +43,10 @@ def start_server():
 
 def server():
     print(" - " + address +":" +str(PORT))
+    global httpd
     httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
     httpd.serve_forever()
+    
 
 def open_default_localhost():
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
