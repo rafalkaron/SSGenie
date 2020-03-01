@@ -67,6 +67,5 @@ def main():
     t2.join(1.0)
     t1.join()
  
-    
 if __name__ == '__main__':
     main()
