@@ -56,16 +56,16 @@ def main():
     os.chdir(app_path)
     if os.name=="posix":
         os.chdir("../../../") # Needed if you want to compile this as a macOS bundle/app.
-    t1 = threading.Thread(name="daemon", target=start_server)
-    t1.setDaemon(True)
+    t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
     t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
 
     t1.start()
-    #while PORT is None:
-    #    time.sleep(1)
+    while PORT is None:
+        time.sleep(1)
+    time.sleep(1)
     t2.start()
-    t2.join(1.0)
     t1.join()
+    t2.join()
  
 if __name__ == '__main__':
     main()
