@@ -35,6 +35,7 @@ def start_server():
         try:
             PORT +=1
             server()
+            break
         except:
             continue
         else:
@@ -62,7 +63,7 @@ def main():
     t1.start()
     while PORT is None:
         time.sleep(1)
-    time.sleep(1)
+    #time.sleep(1)
     t2.start()
     t1.join()
     t2.join()
