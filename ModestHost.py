@@ -15,7 +15,7 @@ import sys
 import threading
 import time
 
-__version__ = "0.9"
+__version__ = "0.9.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
