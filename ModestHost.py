@@ -54,14 +54,9 @@ def open_default_localhost():
     webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)
 
 def main():
-    if os.name=="nt":
-        os.chdir(app_path)
-    if os.name=="posix":
-        _script_filepath = os.path.abspath(__file__)
-        _script_filename = os.path.basename(__file__)
-        _script_directory = _script_filepath.replace(_script_filename, "").replace("\\", "/")
-        os.chdir(_script_directory)
-        os.chdir("../../../")
+    os.chdir(app_path)
+    #if os.name=="posix":       # Uncomment for .app builds
+    #    os.chdir("../../../")
     t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
     t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
 
