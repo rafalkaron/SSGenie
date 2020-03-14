@@ -55,8 +55,8 @@ def open_default_localhost():
 
 def main():
     os.chdir(app_path)
-    if os.name=="posix":
-        os.chdir("../../../")
+    #if os.name=="posix":       # For .app
+    #    os.chdir("../../../")
     t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
     t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
 
