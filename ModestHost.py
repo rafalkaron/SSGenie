@@ -20,7 +20,7 @@ __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
 PORT = None
-
+server_alive = False
 if getattr(sys, 'frozen', False):
     app_path = os.path.dirname(sys.executable)
 elif __file__:
@@ -35,19 +35,23 @@ def start_localhost():
         try:
             PORT +=1
             print(" - " + address +":" +str(PORT))
+            global httpd
             httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-            te1 = threading.Thread(print("Server alive"))
-            te2 = threading.Thread(httpd.serve_forever())
+            print("Server alive")
+            global server_alive
+            server_alive = True
+            httpd.serve_forever()
             break
         except:
             continue
 
+"""
 def server_alive():
     print("Server alive")
     global server_alive
     server_alive = True
 server_alive = False
-
+"""
 def open_default_localhost():
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
     webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)
@@ -59,7 +63,10 @@ def main():
     t1 = threading.Thread(target=start_localhost)
     t2 = threading.Thread(target=open_default_localhost)
     t1.start()
-    time.sleep(5) #make it more elegant
+    #time.sleep(5) #make it more elegant
+    while server_alive == False:
+        print("Waiting for localhost...")
+        #time.sleep(1)
     t2.start()
     t1.join()
     t2.join()
