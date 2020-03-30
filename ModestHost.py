@@ -15,7 +15,7 @@ import sys
 import threading
 import time
 
-__version__ = "0.9.2"
+__version__ = "1.0"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
@@ -45,28 +45,20 @@ def start_localhost():
         except:
             continue
 
-"""
-def server_alive():
-    print("Server alive")
-    global server_alive
-    server_alive = True
-server_alive = False
-"""
 def open_default_localhost():
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
     webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)
 
 def main():
     os.chdir(app_path)
-    if os.name=="posix":       # Uncomment for .app builds
+    if os.name=="posix":    # Uncomment for macOS .app builds
         os.chdir("../../../")
     t1 = threading.Thread(target=start_localhost)
     t2 = threading.Thread(target=open_default_localhost)
     t1.start()
-    #time.sleep(5) #make it more elegant
-    while server_alive == False:
+    while server_alive == False:    # This is busy-waiting - think how to improve this
         print("Waiting for localhost...")
-        #time.sleep(1)
+        time.sleep(1)
     t2.start()
     t1.join()
     t2.join()
