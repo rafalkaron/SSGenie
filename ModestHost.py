@@ -26,7 +26,7 @@ if getattr(sys, 'frozen', False):
 elif __file__:
     app_path = os.path.dirname(__file__)
 
-def start_server():
+def start_localhost():
     global info_starting_server
     info_starting_server = print("Trying to host files from " + app_path + " on:")
     global PORT
@@ -34,20 +34,15 @@ def start_server():
     while True:
         try:
             PORT +=1
-            server()
+            print(" - " + address +":" +str(PORT))
+            httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
+            httpd.serve_forever()
             break
         except:
             continue
         else:
             print("Cannot host files on localhost. Reboot your workstation and try again.")
         break
-
-def server():
-    print(" - " + address +":" +str(PORT))
-    global httpd
-    httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-    httpd.serve_forever()
-    
 
 def open_default_localhost():
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
@@ -57,15 +52,23 @@ def main():
     os.chdir(app_path)
     if os.name=="posix":       # Uncomment for .app builds
         os.chdir("../../../")
-    t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
+    t1 = threading.Thread(target=start_localhost)
     t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
-
     t1.start()
-    #if PORT is not None:
     time.sleep(5)
     t2.start()
     t1.join()
     t2.join()
- 
+
+"""
+    t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
+    t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
+
+    t1.start()
+    time.sleep(5)
+    t2.start()
+    t1.join()
+    t2.join()
+ """
 if __name__ == '__main__':
     main()
