@@ -15,7 +15,7 @@ import sys
 import threading
 import time
 
-__version__ = "0.9.1"
+__version__ = "0.9.2"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
@@ -55,14 +55,14 @@ def open_default_localhost():
 
 def main():
     os.chdir(app_path)
-    #if os.name=="posix":       # Uncomment for .app builds
-    #    os.chdir("../../../")
+    if os.name=="posix":       # Uncomment for .app builds
+        os.chdir("../../../")
     t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
     t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
 
     t1.start()
-    while PORT is None:
-        time.sleep(1)
+    #if PORT is not None:
+    time.sleep(5)
     t2.start()
     t1.join()
     t2.join()
