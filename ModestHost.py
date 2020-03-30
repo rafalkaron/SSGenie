@@ -36,13 +36,17 @@ def start_localhost():
             PORT +=1
             print(" - " + address +":" +str(PORT))
             httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-            httpd.serve_forever()
+            te1 = threading.Thread(print("Server alive"))
+            te2 = threading.Thread(httpd.serve_forever())
             break
         except:
             continue
-        else:
-            print("Cannot host files on localhost. Reboot your workstation and try again.")
-        break
+
+def server_alive():
+    print("Server alive")
+    global server_alive
+    server_alive = True
+server_alive = False
 
 def open_default_localhost():
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
@@ -53,22 +57,12 @@ def main():
     if os.name=="posix":       # Uncomment for .app builds
         os.chdir("../../../")
     t1 = threading.Thread(target=start_localhost)
-    t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
+    t2 = threading.Thread(target=open_default_localhost)
     t1.start()
-    time.sleep(5)
+    time.sleep(5) #make it more elegant
     t2.start()
     t1.join()
     t2.join()
 
-"""
-    t1 = threading.Thread(name="daemon", target=start_server, daemon=True)
-    t2 = threading.Thread(name="non-daemon", target=open_default_localhost)
-
-    t1.start()
-    time.sleep(5)
-    t2.start()
-    t1.join()
-    t2.join()
- """
 if __name__ == '__main__':
     main()
