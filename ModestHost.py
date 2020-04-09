@@ -47,7 +47,7 @@ def start_localhost():
 
 def open_default_localhost():
     print("Opening " + address + ":" + str(PORT) + " in your default web browser")
-    webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)
+    webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)    
 
 def main():
     os.chdir(app_path)
