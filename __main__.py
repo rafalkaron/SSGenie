@@ -1,10 +1,6 @@
 #coding: utf-8
 """
-    ModestHost
-    *********************************************************
-    Quickly host files from the ModestHost directory.
-
-    *********************************************************
+Quickly host files from the ModestHost directory.
 """
 
 import http.server
