@@ -41,20 +41,16 @@ def start_localhost():
             httpd.serve_forever()
             break
         except:
-            continue
-
-def open_default_localhost():
-    webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)    
+            continue        
 
 def main():
     os.chdir(exe_dir()) # Changes the directory to the executable
     #os.chdir("../../../") # Uncomment for building macOS apps.
     t1 = threading.Thread(target=start_localhost)
-    t2 = threading.Thread(target=open_default_localhost)
     t1.start()
     while not server_alive:
         time.sleep(1)
-    t2.start()
+    webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)
 
 if __name__ == '__main__':
     main()
