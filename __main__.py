@@ -1,8 +1,8 @@
 #coding: utf-8
 """
-Quickly host files from the ModestHost directory.
+Quickly host files from the current directory on a localhost:8000 (or higher) web server.
 """
-
+### Compile this as bundled executable and pack it up with platypus. check theprevent closing option and add run.sh.
 import http.server
 import socketserver
 import webbrowser
@@ -11,29 +11,31 @@ import sys
 import threading
 import time
 
-__version__ = "1.0"
+
+__version__ = "1.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 address = "localhost"
-PORT = None
-server_alive = False
-if getattr(sys, 'frozen', False):
-    app_path = os.path.dirname(sys.executable)
-elif __file__:
-    app_path = os.path.dirname(__file__)
 
+
+def exe_dir():
+    """Return the executable directory."""
+    if getattr(sys, 'frozen', False):
+        exe_path = os.path.dirname(sys.executable)
+    elif __file__:
+        exe_path = os.path.dirname(__file__)
+    return exe_path
+
+server_alive = False
 def start_localhost():
-    global info_starting_server
-    info_starting_server = print("Trying to host files from " + app_path + " on:")
-    global PORT
-    PORT = 7999
+    global port
+    port = 7999
     while True:
         try:
-            PORT +=1
-            print(" - " + address +":" +str(PORT))
-            global httpd
-            httpd = socketserver.TCPServer((address, PORT), http.server.SimpleHTTPRequestHandler)
-            print("Server alive")
+            port +=1
+            print(" - " + address +":" +str(port))
+            httpd = socketserver.TCPServer((address, port), http.server.SimpleHTTPRequestHandler)
+            print("Web server alive")
             global server_alive
             server_alive = True
             httpd.serve_forever()
@@ -42,22 +44,17 @@ def start_localhost():
             continue
 
 def open_default_localhost():
-    print("Opening " + address + ":" + str(PORT) + " in your default web browser")
-    webbrowser.open(url="http://" + address +":"+str(PORT), new=1, autoraise=True)    
+    webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)    
 
 def main():
-    os.chdir(app_path)
-    if os.name=="posix":    # Uncomment for macOS .app builds
-        os.chdir("../../../")
+    os.chdir(exe_dir()) # Changes the directory to the executable
+    #os.chdir("../../../") # Uncomment for building macOS apps.
     t1 = threading.Thread(target=start_localhost)
     t2 = threading.Thread(target=open_default_localhost)
     t1.start()
-    while server_alive == False:    # This is busy-waiting - think how to improve this
-        print("Waiting for localhost...")
+    while not server_alive:
         time.sleep(1)
     t2.start()
-    t1.join()
-    t2.join()
 
 if __name__ == '__main__':
     main()

@@ -1,5 +1,6 @@
 # ModestHost
-*ModestHost enables you to quickly host files on a local web server. The default address of the local web server created by ModestHost `localhost:8000`. If the default port is already used, ModestHost uses a consecutive port number.*
+*ModestHost enables you to quickly host files on a local web server.*  
+The default address of the local web server created by ModestHost `localhost:8000`. If the default port is already used, ModestHost uses consecutive port numbers to set up the server.
 
 ## Hosting Files on a Local Web Server
 *You can set up a local web server by running ModestHost in an appropriate directory.*
@@ -18,6 +19,7 @@
 * To finish, close **ModestHost**.
 
 ## Troubleshooting
+*Resolve common issues with ModestHost.*
 ### Error response (404 - no permissions to list directory)
 1. Move the **ModestHost** outside the folder with the files that you want to host.
 2. Move the **ModestHost** back to the folder with the files that you want to host.
