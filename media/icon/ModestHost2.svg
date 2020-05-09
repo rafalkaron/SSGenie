@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="72.000008"
+   inkscape:export-xdpi="72.000008"
+   inkscape:export-filename="C:\Users\rafal\Desktop\ModestHost.png"
+   sodipodi:docname="ModestHost2.svg"
+   inkscape:version="1.0beta2 (2b71d25, 2019-12-03)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 264.58335 264.58335"
+   height="1000"
+   width="1000">
+  <title
+     id="title3713">Klipps</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     inkscape:guide-bbox="true"
+     showguides="true"
+     inkscape:pagecheckerboard="false"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     units="px"
+     inkscape:window-maximized="0"
+     inkscape:window-y="23"
+     inkscape:window-x="36"
+     inkscape:window-height="855"
+     inkscape:window-width="1404"
+     showgrid="false"
+     inkscape:current-layer="layer3"
+     inkscape:document-units="px"
+     inkscape:cy="647.19855"
+     inkscape:cx="386.58729"
+     inkscape:zoom="0.35861653"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.20784314"
+     borderopacity="1"
+     bordercolor="#000000"
+     pagecolor="#515151"
+     id="base">
+    <sodipodi:guide
+       id="guide308"
+       orientation="0,-1"
+       position="48.412521,198.43751" />
+    <sodipodi:guide
+       inkscape:color="rgb(0,0,255)"
+       inkscape:locked="false"
+       inkscape:label=""
+       id="guide310"
+       orientation="0,1"
+       position="-109.22689,202.93543" />
+    <sodipodi:guide
+       id="guide1174"
+       orientation="1,0"
+       position="48.412521,198.43751" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Klipps</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Rafał Karoń</dc:title>
+          </cc:Agent>
+        </dc:creator>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     style="display:inline"
+     inkscape:label="Background"
+     id="layer2"
+     inkscape:groupmode="layer">
+    <circle
+       r="132.29167"
+       cy="132.29167"
+       cx="132.29167"
+       id="path3736-9"
+       style="fill:#f7fff7;stroke-width:0.264584;fill-opacity:1" />
+  </g>
+  <g
+     inkscape:label="stripes copy"
+     inkscape:groupmode="layer"
+     id="g155"
+     transform="translate(0,-32.416632)"
+     style="display:inline;opacity:1">
+    <circle
+       cy="209.95454"
+       cx="157.70412"
+       id="circle137"
+       style="opacity:1;fill:#ffffff;stroke-width:0.79375"
+       r="7.9375005" />
+    <circle
+       style="opacity:1;fill:#ffffff;stroke-width:0.79375"
+       id="circle139"
+       cx="177.01872"
+       cy="209.95454"
+       r="7.9375005" />
+    <circle
+       r="7.9375005"
+       cy="209.95454"
+       cx="196.52245"
+       id="circle141"
+       style="opacity:1;fill:#ffffff;stroke-width:0.79375" />
+    <rect
+       y="202.01704"
+       x="61.924942"
+       height="15.875001"
+       width="52.916672"
+       id="rect143"
+       style="opacity:1;fill:#ffffff;stroke-width:0.311944" />
+    <circle
+       cy="110.73579"
+       cx="157.70413"
+       id="circle147"
+       style="opacity:1;fill:#ffffff;stroke-width:0.79375"
+       r="7.9375005" />
+    <circle
+       style="opacity:1;fill:#ffffff;stroke-width:0.79375"
+       id="circle149"
+       cx="177.01871"
+       cy="110.73579"
+       r="7.9375005" />
+    <circle
+       r="7.9375005"
+       cy="110.73579"
+       cx="196.52246"
+       id="circle151"
+       style="opacity:1;fill:#ffffff;stroke-width:0.79375" />
+    <rect
+       y="102.79829"
+       x="61.92495"
+       height="15.875001"
+       width="52.916672"
+       id="rect153"
+       style="opacity:1;fill:#ffffff;stroke-width:0.311944" />
+  </g>
+  <g
+     style="display:inline;opacity:1;"
+     transform="translate(0,-32.416632)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="stripes" />
+  <g
+     style="opacity:1;"
+     inkscape:label="extras"
+     id="layer3"
+     inkscape:groupmode="layer">
+    <rect
+       style="display:inline;fill:#4ecdc4;fill-opacity:1;stroke-width:0.381856"
+       id="rect135"
+       width="167.7583"
+       height="41.806648"
+       x="48.412521"
+       y="160.86668" />
+    <rect
+       y="160.86668"
+       x="48.412521"
+       height="33.072922"
+       width="158.75002"
+       id="rect137-3-8"
+       style="display:inline;fill:#000000;stroke-width:0.330391" />
+    <circle
+       r="7.9375005"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.79375"
+       id="path211-5"
+       cx="153.19997"
+       cy="177.53792" />
+    <circle
+       r="7.9375005"
+       cy="177.53792"
+       cx="172.51457"
+       id="circle213-9"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.79375" />
+    <circle
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.79375"
+       id="circle215-4"
+       cx="192.0183"
+       cy="177.53792"
+       r="7.9375005" />
+    <rect
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.311944"
+       id="rect220-3"
+       width="52.916672"
+       height="15.875001"
+       x="57.420792"
+       y="169.60042" />
+    <rect
+       style="display:inline;fill:#4ecdc4;fill-opacity:1;stroke-width:0.381856"
+       id="rect145"
+       width="167.7583"
+       height="41.80666"
+       x="48.412521"
+       y="61.647919" />
+    <rect
+       y="61.647919"
+       x="48.412521"
+       height="33.072922"
+       width="158.75002"
+       id="rect137-3-6"
+       style="display:inline;fill:#000000;fill-opacity:1;stroke-width:0.330391" />
+    <circle
+       r="7.9375005"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.79375"
+       id="path211-4"
+       cx="153.19998"
+       cy="78.319153" />
+    <circle
+       r="7.9375005"
+       cy="78.319153"
+       cx="172.51456"
+       id="circle213-6"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.79375" />
+    <circle
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.79375"
+       id="circle215-43"
+       cx="192.01831"
+       cy="78.319153"
+       r="7.9375005" />
+    <rect
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.311944"
+       id="rect220-8"
+       width="52.916672"
+       height="15.875001"
+       x="57.420799"
+       y="70.381653" />
+    <rect
+       y="111.12501"
+       x="48.424973"
+       height="41.804169"
+       width="167.74585"
+       id="rect133"
+       style="display:inline;fill:#4ecdc4;fill-opacity:1;stroke-width:0.38183" />
+    <rect
+       style="display:inline;fill:#000000;stroke-width:0.330391"
+       id="rect137-3"
+       width="158.75002"
+       height="33.072922"
+       x="48.412525"
+       y="111.12251" />
+    <circle
+       cy="127.79375"
+       cx="153.19998"
+       id="path211"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.793749"
+       r="7.9375005" />
+    <circle
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.793749"
+       id="circle213"
+       cx="172.51456"
+       cy="127.79375"
+       r="7.9375005" />
+    <circle
+       r="7.9375005"
+       cy="127.79375"
+       cx="192.01833"
+       id="circle215"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.793749" />
+    <rect
+       y="119.85625"
+       x="57.420803"
+       height="15.875001"
+       width="52.916672"
+       id="rect220"
+       style="fill:#f7fff7;fill-opacity:1;stroke-width:0.311943" />
+  </g>
+</svg>
