@@ -23,5 +23,5 @@ The default address of the local web server created by ModestHost is `localhost:
 ## Troubleshooting
 *Resolve common issues with ModestHost.*
 ### Error response (404 - no permissions to list directory)
-1. Move the **ModestHost** outside the folder with the files that you want to host.
-2. Move the **ModestHost** back to the folder with the files that you want to host.
+1. Move **ModestHost** outside the folder with files that you want to host.
+2. Move **ModestHost** back to the folder with files that you want to host.
