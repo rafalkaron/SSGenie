@@ -42,7 +42,7 @@ def start_web_server():
 
 def main():
     os.chdir(exe_dir()) # Changes the directory to the executable directory.
-    os.chdir("../../../") # Uncomment for building macOS apps.
+    # os.chdir("../../../") # Uncomment for building macOS apps.
     threading.Thread(target=start_web_server).start()
     while not server_up:
         time.sleep(1)
