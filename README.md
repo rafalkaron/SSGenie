@@ -8,7 +8,7 @@ The default address of the local web server created by ModestHost is `localhost:
 *You can quickly host files on a local web server by running ModestHost in an appropriate directory.*
 
 ### Before you begin
-1. Download the latest version of **ModestHost** for your operating system. See [ModestHost Releases](https://github.com/rafalkaron/ModestHost/releases).
+1. Download the latest version of **ModestHost** for your operating system. See [Latest ModestHost Release](https://github.com/rafalkaron/ModestHost/releases/latest).
 2. Unzip **ModestHost**.
 
 ### Procedure
