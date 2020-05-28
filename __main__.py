@@ -46,6 +46,7 @@ def main():
     threading.Thread(target=start_web_server).start()
     while not server_up:
         time.sleep(1)
+    time.sleep(1)
     webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)
 
 if __name__ == '__main__':
