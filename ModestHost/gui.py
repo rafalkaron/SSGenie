@@ -5,19 +5,31 @@ import tkinter as tk
 
 window = tk.Tk()
 
-window.columnconfigure([0], minsize=250)
-window.rowconfigure([0, 1, 2, 3], minsize=25)
+window.columnconfigure([0], minsize=150, weight=1)
+window.rowconfigure([1, 3], minsize=0, weight=1)
 
-input_lbl = tk.Label(text="Enter the directory that contains the files that you want to host")
-input_lbl.grid(row=0, column=0)
-ent_folder = tk.Entry()
-ent_folder.grid(row=1, column=0)
-btn_start = tk.Button(text="Start Server", height="2")
-btn_start.grid(row=2, column=0)
-btn_stop = tk.Button(text="Stop Server", height="2")
-btn_stop.grid(row=3, column=0)
-status_lbl = tk.Label(text="localhost:8000 is up")
-status_lbl.grid(row=4, column=0)
+frm_input = tk.Frame(master=window)
+frm_input.grid(row=0, column=0, padx="10", pady="10", sticky="w")
+input_lbl = tk.Label(text="Directory to host:", master=frm_input)
+input_lbl.pack(side=tk.LEFT)
+ent_folder = tk.Entry(width="60", master=frm_input)
+ent_folder.pack(fill=tk.X)
+
+frm_controls = tk.Frame(master=window)
+frm_controls.grid(row=1, column=0, padx="10", pady="10", sticky="n")
+chkbtn_preview = tk.Checkbutton(text="Open in browser", master=frm_controls)
+chkbtn_preview.pack()
+btn_start = tk.Button(text="Start Server", height="2", master=frm_controls)
+btn_start.pack(side=tk.LEFT)
+btn_stop = tk.Button(text="Stop Server", height="2", master=frm_controls)
+btn_stop.pack(side=tk.LEFT)
+
+frm_status = tk.Frame(master=window)
+frm_status.grid(row=3, column=0, sticky="ws", padx="10", pady="10")
+lbl_status = tk.Label(text="Status:", master=frm_status)
+lbl_status.pack(side=tk.LEFT)
+lbl_status_variable = tk.Label(text="localhost:8000 is up", master=frm_status)
+lbl_status_variable.pack(side=tk.LEFT)
 
 window.mainloop()
 
@@ -42,7 +54,7 @@ btn_start.pack(side=tk.LEFT)
 btn_stop = tk.Button(text="Stop Server", height="2", master=frm_controls)
 btn_stop.pack(side=tk.RIGHT)
 status = "localhost:8000 is up"
-status_lbl = tk.Label(text=f"Status: {status}", master=frm_status)
-status_lbl.pack(side=tk.LEFT)
+lbl_status = tk.Label(text=f"Status: {status}", master=frm_status)
+lbl_status.pack(side=tk.LEFT)
 """
 window.mainloop()
