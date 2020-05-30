@@ -12,6 +12,8 @@ import threading
 import time
 import tkinter as tk
 from tkinter import filedialog
+from belfrywidgets import (CollapsiblePane,
+                            )
 
 __version__ = "1.1.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
@@ -34,7 +36,7 @@ def browse_dir():
     os.chdir(window.filename)
     return window.filename
 
-def start_web_server():
+def start_server():
     """Start a local web server. Use port 8000 or higher."""
     global port
     port = 7999
@@ -52,14 +54,21 @@ def start_web_server():
             continue
 
 def run_server():
-    os.chdir(ent_folder.get())
-    t1 = threading.Thread(target=start_web_server, daemon=True)
-    t1.start()
-    while not server_up:
-        time.sleep(1)
-    update_gui()
-    if preview.get() == 1:
-        webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)  
+    try:
+        os.chdir(ent_folder.get())
+    except FileNotFoundError as error:
+        print(error)
+    else:
+        t1 = threading.Thread(target=start_server, daemon=True)
+        t1.start()
+        while not server_up:
+            time.sleep(1)
+        lbl_status.config(text=server_status)
+        lbl_status_indicator.config(text="►", fg="green")
+        btn_start.config(state="disabled", command="")
+        btn_stop.config(state="normal", command=kill_server)
+        if preview.get() == 1:
+            webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)  
 
 def kill_server():
     exit(0)
@@ -97,17 +106,10 @@ btn_stop.pack(side=tk.LEFT)
 frm_status.grid(row=3, column=0, sticky="we", padx="10", pady="10")
 chkbtn_preview.pack(side=tk.LEFT)
 lbl_status.pack(side=tk.RIGHT)
-lbl_status_indicator.pack(side=tk.RIGHT)  
-
-def update_gui():
-    lbl_status.config(text=server_status)
-    lbl_status_indicator.config(text="►", fg="green")
-    btn_start.config(state="disabled", command="")
-    btn_stop.config(state="normal", command=kill_server)
+lbl_status_indicator.pack(side=tk.RIGHT)
 
 def main():
     ent_folder.insert(0, exe_dir())
-    os.chdir(ent_folder.get()) # Changes the directory to the executable directory.
     # os.chdir("../../../") # Uncomment for building macOS apps.
     window.mainloop()
 
