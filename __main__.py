@@ -53,6 +53,7 @@ def start_web_server():
             continue
 
 def run_server():
+    os.chdir(ent_folder.get())
     t1 = threading.Thread(target=start_web_server, daemon=True)
     t1.start()
     while not server_up:
