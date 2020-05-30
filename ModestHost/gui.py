@@ -17,7 +17,6 @@ btn_browse.pack(side=tk.LEFT)
 ent_folder = tk.Entry(width="65", master=frm_input)
 ent_folder.pack(fill=tk.X, expand=True)
 
-
 frm_controls = tk.Frame(master=window)
 frm_controls.grid(row=1, column=0, padx="10", pady="10", sticky="ns")
 btn_start = tk.Button(text="Start Server", height="2", master=frm_controls)
@@ -35,31 +34,9 @@ lbl_status_variable.pack(side=tk.RIGHT)
 lbl_status = tk.Label(text="Status:", master=frm_status)
 lbl_status.pack(side=tk.RIGHT)
 
+def test(event):
+    print("test")
 
-window.mainloop()
+btn_start.bind("<Button-1>", test)
 
-"""
-frm_input = tk.Frame(width=200, bg="green", master=window)
-frm_input.pack(fill=tk.BOTH, expand =True)
-
-frm_controls = tk.Frame(width=200, bg="red", master=window)
-frm_controls.pack()
-
-frm_status = tk.Frame(width=200, bg="blue", master=window)
-frm_status.pack(fill=tk.X)
-
-
-input_lbl = tk.Label(text="Enter the directory that contains the files that you want to host", height="2", master=frm_input)
-input_lbl.pack()
-ent_folder = tk.Entry(master=frm_input)
-ent_folder.pack(fill=tk.X)
-ent_folder_retrive = ent_folder.get()
-btn_start = tk.Button(text="Start Server", height="2", master=frm_controls)
-btn_start.pack(side=tk.LEFT)
-btn_stop = tk.Button(text="Stop Server", height="2", master=frm_controls)
-btn_stop.pack(side=tk.RIGHT)
-status = "localhost:8000 is up"
-lbl_status = tk.Label(text=f"Status: {status}", master=frm_status)
-lbl_status.pack(side=tk.LEFT)
-"""
 window.mainloop()
