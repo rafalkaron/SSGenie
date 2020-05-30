@@ -57,17 +57,14 @@ def run_server():
     try:
         os.chdir(ent_folder.get())
     except FileNotFoundError:
-        lbl_error_symbol.config(text="▲")
-        lbl_error.config(text=f"directory does not exist")
+        lbl_error.config(text=f"🔥 directory does not exist")
     else:
-        lbl_error_symbol.config(text="")
         lbl_error.config(text="")
         t1 = threading.Thread(target=start_server, daemon=True)
         t1.start()
         while not server_up:
             time.sleep(1)
-        lbl_status.config(text=server_status)
-        lbl_status_symbol.config(text="►", fg="green")
+        lbl_status.config(text=f"🟢 {server_status}")
         btn_start.config(state="disabled", command="")
         btn_stop.config(state="normal", command=kill_server)
         if preview.get() == 1:
@@ -82,22 +79,20 @@ window.columnconfigure([0], minsize=150, weight=1)
 window.rowconfigure([1, 2], weight=1)
 
 frm_input = tk.Frame(master=window)
-input_lbl = tk.Label(text="Directory to host", font="default 14 bold", master=frm_input)
+input_lbl = tk.Label(text="📁 Directory to host", font="default 14 bold", master=frm_input)
 btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
 frm_controls = tk.Frame(master=window)
-btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", command=run_server, master=frm_controls)
-btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", state="disabled", master=frm_controls)
+btn_start = tk.Button(text="🟢 Start Server", height="2", font="default 14 bold", command=run_server, master=frm_controls)
+btn_stop = tk.Button(text="🟥 Stop Server", height="2", font="default 14 bold", state="disabled", master=frm_controls)
 
 frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
 chkbtn_preview = tk.Checkbutton(text="Web browser preview", variable=preview, onvalue=1, master=frm_status)
 chkbtn_preview.select()
-lbl_error_symbol = tk.Label(fg="orange", master=frm_status)
 lbl_error = tk.Label(font="TkFixedFont", master=frm_status)
-lbl_status_symbol = tk.Label(text="■", fg="red", master=frm_status)
-lbl_status = tk.Label(text=f"server not running", font="TkFixedFont", master=frm_status)
+lbl_status = tk.Label(text=f"🟥 server not running", font="TkFixedFont", master=frm_status)
 
 frm_input.grid(row=0, column=0, padx="10", pady="10", sticky="we")
 input_lbl.pack(side=tk.LEFT)
@@ -111,9 +106,7 @@ btn_stop.pack(side=tk.LEFT)
 frm_status.grid(row=3, column=0, sticky="we", padx="10", pady="10")
 chkbtn_preview.pack(side=tk.LEFT)
 lbl_status.pack(side=tk.RIGHT)
-lbl_status_symbol.pack(side=tk.RIGHT)
 lbl_error.pack(side=tk.RIGHT)
-lbl_error_symbol.pack(side=tk.RIGHT)
 
 def main():
     ent_folder.insert(0, exe_dir())
