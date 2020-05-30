@@ -28,7 +28,12 @@ def exe_dir():
     return exe_path
 
 def browse_dir():
+    """Return the path to the directory of your choice."""
     window.filename = filedialog.askdirectory(initialdir=exe_dir())
+    ent_folder.delete(0, tk.END)
+    ent_folder.insert(0, window.filename)
+    os.chdir(window.filename)
+    return window.filename
 
 def start_web_server():
     """Start a local web server. Use port 8000 or higher."""
@@ -48,7 +53,6 @@ def start_web_server():
             continue
 
 def run_server():
-    global t1
     t1 = threading.Thread(target=start_web_server, daemon=True)
     t1.start()
     while not server_up:
@@ -105,7 +109,6 @@ def main():
     ent_folder.insert(0, exe_dir())
     os.chdir(ent_folder.get()) # Changes the directory to the executable directory.
     # os.chdir("../../../") # Uncomment for building macOS apps.
-    #btn_start.bind("<Button-1>", run_server)
     window.mainloop()
 
 if __name__ == '__main__':
