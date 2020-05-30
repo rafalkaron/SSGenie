@@ -17,6 +17,49 @@ from tkinter import filedialog
 __version__ = "1.2"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
+server_up = False
+
+def exe_dir():
+    """Return the executable directory."""
+    if getattr(sys, 'frozen', False):
+        exe_path = os.path.dirname(sys.executable)
+    elif __file__:
+        exe_path = os.path.dirname(__file__)
+    return exe_path
+
+def browse_dir():
+    window.filename = filedialog.askdirectory(initialdir=exe_dir())
+
+def start_web_server():
+    """Start a local web server. Use port 8000 or higher."""
+    global port
+    port = 7999
+    while True:
+        try:
+            port +=1
+            httpd = socketserver.TCPServer(("localhost", port), http.server.SimpleHTTPRequestHandler)
+            global server_status
+            server_status = f"localhost:{port} is up"
+            global server_up
+            server_up = True
+            httpd.serve_forever()
+            break
+        except:
+            continue
+
+def run_server():
+    global t1
+    t1 = threading.Thread(target=start_web_server, daemon=True)
+    t1.start()
+    while not server_up:
+        time.sleep(1)
+    update_gui()
+    if preview.get() == 1:
+        webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)  
+
+def kill_server():
+    exit(0)
+
 window = tk.Tk()
 window.title("Modest Host")
 window.columnconfigure([0], minsize=150, weight=1)
@@ -24,11 +67,11 @@ window.rowconfigure([1, 2], weight=1)
 
 frm_input = tk.Frame(master=window)
 input_lbl = tk.Label(text="Directory to host", font="default 14 bold", master=frm_input)
-btn_browse = tk.Button(text="Browse...", master=frm_input)
+btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
 frm_controls = tk.Frame(master=window)
-btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", master=frm_controls)
+btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", command=run_server, master=frm_controls)
 btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", state="disabled", master=frm_controls)
 
 frm_status = tk.Frame(master=window)
@@ -50,69 +93,19 @@ btn_stop.pack(side=tk.LEFT)
 frm_status.grid(row=3, column=0, sticky="we", padx="10", pady="10")
 chkbtn_preview.pack(side=tk.LEFT)
 lbl_status.pack(side=tk.RIGHT)
-lbl_status_indicator.pack(side=tk.RIGHT)
+lbl_status_indicator.pack(side=tk.RIGHT)  
 
-server_up = False
-
-def exe_dir():
-    """Return the executable directory."""
-    if getattr(sys, 'frozen', False):
-        exe_path = os.path.dirname(sys.executable)
-    elif __file__:
-        exe_path = os.path.dirname(__file__)
-    return exe_path
-
-def browse_dir(event):
-    window.filename = filedialog.askdirectory(initialdir=exe_dir())
-
-def start_web_server():
-    """Start a local web server. Use port 8000 or higher."""
-    global port
-    port = 7999
-    while True:
-        try:
-            port +=1
-            httpd = socketserver.TCPServer(("localhost", port), http.server.SimpleHTTPRequestHandler)
-            global server_status
-            server_status = f"localhost:{port} is up"
-            global server_up
-            server_up = True
-            httpd.serve_forever()
-            break
-        except:
-            continue
-        return server_status
-
-def run_server(event):
-    global t1
-    t1 = threading.Thread(target=start_web_server, daemon=True)
-    t1.start()
-    while not server_up:
-        time.sleep(1)
+def update_gui():
     lbl_status.config(text=server_status)
     lbl_status_indicator.config(text="►", fg="green")
-    btn_start.config(state="disabled")
-    btn_start.unbind("<Button-1>")
-    btn_stop.config(state="normal")
-    btn_stop.bind("<Button-2>", kill_server)
-    if preview.get() == 1:
-        open_webbrowser(url=f"http://localhost:{str(port)}")
-    
-def open_webbrowser(url):
-    webbrowser.open(url=url, new=1, autoraise=True)
-
-def kill_server(event):
-    t1._stop()
+    btn_start.config(state="disabled", command="")
+    btn_stop.config(state="normal", command=kill_server)
 
 def main():
     ent_folder.insert(0, exe_dir())
     os.chdir(ent_folder.get()) # Changes the directory to the executable directory.
     # os.chdir("../../../") # Uncomment for building macOS apps.
-    
-    btn_start.bind("<Button-1>", run_server)
-    btn_stop.bind("<Button-2>")
-    btn_browse.bind("<Button-3>", browse_dir)
-
+    #btn_start.bind("<Button-1>", run_server)
     window.mainloop()
 
 if __name__ == '__main__':
