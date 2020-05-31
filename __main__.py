@@ -13,7 +13,7 @@ import time
 import tkinter as tk
 from tkinter import filedialog
 
-__version__ = "1.2"
+__version__ = "1.2.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 server_up = False
