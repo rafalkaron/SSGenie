@@ -64,12 +64,12 @@ def start_server():
         t1.start()
         while not server_up:
             time.sleep(1)
-        lbl_status.config(text=f"✔️{server_status}")
+        lbl_status.config(text=f"✅ {server_status}")
         btn_start.config(state="disabled", command="")
         btn_stop.config(state="normal", command=kill_server)
         if preview.get() == 1:
             webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)  
-
+            
 def kill_server():
     """Kill the started local web server and update the GUI."""
     httpd.shutdown()
