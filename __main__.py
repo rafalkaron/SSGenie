@@ -1,8 +1,8 @@
 #coding: utf-8
 """
-Quickly host files from the ModestHost directory on a localhost web server.
+Quickly host files on a local web server.
 """
-# Compile by using PyInstaller with the --onedir argument. Then, in Platypus, add the compiled files to the bundle, use the "run.sh" file as the script, and select the "Remain running after execution" option.
+
 import http.server
 import socketserver
 import webbrowser
@@ -12,8 +12,6 @@ import threading
 import time
 import tkinter as tk
 from tkinter import filedialog
-from belfrywidgets import (CollapsiblePane,
-                            )
 
 __version__ = "1.1.1"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
@@ -36,13 +34,14 @@ def browse_dir():
     os.chdir(window.filename)
     return window.filename
 
-def start_server():
+def init_server():
     """Start a local web server. Use port 8000 or higher."""
     global port
     port = 7999
     while True:
         try:
             port +=1
+            global httpd
             httpd = socketserver.TCPServer(("localhost", port), http.server.SimpleHTTPRequestHandler)
             global server_status
             server_status = f"localhost:{port} is up"
@@ -53,14 +52,15 @@ def start_server():
         except:
             continue
 
-def run_server():
+def start_server():
+    """Use the folder path from the entry field to run a local web server on port 8000 or higher, update the GUI, and open a web browser if the checkbutton is selected"""
     try:
         os.chdir(ent_folder.get())
     except FileNotFoundError:
         lbl_error.config(text=f"⚠️ directory does not exist")
     else:
         lbl_error.config(text="")
-        t1 = threading.Thread(target=start_server, daemon=True)
+        t1 = threading.Thread(target=init_server, daemon=True)
         t1.start()
         while not server_up:
             time.sleep(1)
@@ -71,10 +71,15 @@ def run_server():
             webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)  
 
 def kill_server():
-    exit(0)
+    httpd.shutdown()
+    lbl_status.config(text=f"🟥 server stopped")
+    btn_start.config(state="normal", command=start_server)
+    btn_stop.config(state="disabled", command="")
+    global server_up
+    server_up = False
 
 window = tk.Tk()
-window.title("Modest Host")
+window.title("Hosty")
 window.columnconfigure([0], minsize=150, weight=1)
 window.rowconfigure([1, 2], weight=1)
 
@@ -84,8 +89,8 @@ btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
 frm_controls = tk.Frame(master=window)
-btn_start = tk.Button(text="🟢 Start Server", height="2", font="default 14 bold", command=run_server, master=frm_controls)
-btn_stop = tk.Button(text="🟥 Stop Server", height="2", font="default 14 bold", state="disabled", master=frm_controls)
+btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", command=start_server, master=frm_controls)
+btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", state="disabled", master=frm_controls)
 
 frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
