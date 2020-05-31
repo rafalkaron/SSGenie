@@ -22,6 +22,7 @@ def exe_dir():
     """Return the executable directory."""
     if getattr(sys, 'frozen', False):
         exe_path = os.path.dirname(sys.executable)
+        exe_path = os.path.dirname(os.path.dirname(os.path.dirname(exe_path))) # Uncomment for macOS app builds
     elif __file__:
         exe_path = os.path.dirname(__file__)
     return exe_path
@@ -121,7 +122,6 @@ lbl_error.pack(side=tk.RIGHT)
 
 def main():
     ent_folder.insert(0, exe_dir())
-    # os.chdir("../../../") # Uncomment for building macOS apps.
     window.mainloop()
 
 if __name__ == '__main__':
