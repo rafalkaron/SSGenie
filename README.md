@@ -1,7 +1,7 @@
 # Hosty
 *Quickly host files on a local web server.*
 
-![Hosty Window](https://github.com/rafalkaron/Hosty/tree/master/media/docs/Hosty.png)
+![Hosty Window](https://github.com/rafalkaron/Hosty/blob/master/media/docs/Hosty.png?raw=true)
 
 ## Operation
 The default address of the local web server is `localhost:8000`. If the default port is already used, a consecutive port number is used. Once the server is up, by default, the server address opens in a new tab of your default web browser.
