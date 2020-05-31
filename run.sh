@@ -1,3 +1,3 @@
 #!/bin/sh
 
-"../Resources/ModestHost"
+"../Resources/Hosty"

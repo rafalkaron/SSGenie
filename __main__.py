@@ -2,7 +2,7 @@
 """
 Quickly host files on a local web server.
 """
-
+# Build with sudo pyinstaller "/Users/rafalkaron/Documents/GitHub/ModestHost/__main__.py" -i "/Users/rafalkaron/Documents/GitHub/ModestHost/media/icon/ModestHost2.icns" -n "Hosty" --noconsole --add-binary='/System/Library/Frameworks/Tk.framework/Tk':'tk' --add-binary='/System/Library/Frameworks/Tcl.framework/Tcl':'tcl and then pack it up with platypus using run.sh
 import http.server
 import socketserver
 import webbrowser
@@ -10,6 +10,7 @@ import os
 import sys
 import threading
 import time
+#from tkinter import * # This may be needed while building a macOS app. Verify.
 import tkinter as tk
 from tkinter import filedialog
 

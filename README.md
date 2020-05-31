@@ -30,10 +30,11 @@ The default address of the local web server is `localhost:8000`. If the default 
 
 ## Troubleshooting
 *Resolve common issues with Hosty.*
+
+### The Directory to host field displays a weird path
+* Enter an appropriate path manually
+* Move **Hosty** to a different directory (and back to the original one).
+
 ### The hosted content does not update
 * Clear your web browser cache.
 * Open the web server address in the private (incognito) mode.
-
-### Error response (404 - no permissions to list directory)
-1. Move **Hosty** outside the folder with files that you want to host.
-2. Move **Hosty** back to the folder with files that you want to host.
