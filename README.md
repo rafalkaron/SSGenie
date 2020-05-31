@@ -32,9 +32,9 @@ The default address of the local web server is `localhost:8000`. If the default 
 *Resolve common issues with Hosty.*
 
 ### The Directory to host field displays a weird path
-* Enter an appropriate path manually
-* Move **Hosty** to a different directory (and back to the original one).
+* Enter or browse for the directory path manually.
+* Move **Hosty** to a different directory (and back to the original one, if needed).
 
 ### The hosted content does not update
 * Clear your web browser cache.
-* Open the web server address in the private (incognito) mode.
+* Open the web server address in incognito (private) mode.
