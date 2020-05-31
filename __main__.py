@@ -57,7 +57,7 @@ def start_server():
     try:
         os.chdir(ent_folder.get())
     except FileNotFoundError:
-        lbl_error.config(text=f"❗directory does not exist")
+        lbl_error.config(text=f"❗ directory does not exist")
     else:
         lbl_error.config(text="")
         t1 = threading.Thread(target=init_server, daemon=True)
@@ -72,12 +72,15 @@ def start_server():
             
 def kill_server():
     """Kill the started local web server and update the GUI."""
+    sys.exit(0)
+    """
     httpd.shutdown()
     global server_up
     server_up = False
     lbl_status.config(text=f"❌ server stopped")
     btn_start.config(state="normal", command=start_server)
     btn_stop.config(state="disabled", command="")
+    """
 
 window = tk.Tk()
 window.title("Hosty")
