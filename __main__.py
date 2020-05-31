@@ -75,7 +75,7 @@ def kill_server():
     httpd.shutdown()
     global server_up
     server_up = False
-    lbl_status.config(text=f"🟥 server stopped")
+    lbl_status.config(text=f"❌ server stopped")
     btn_start.config(state="normal", command=start_server)
     btn_stop.config(state="disabled", command="")
 
