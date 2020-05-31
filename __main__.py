@@ -54,6 +54,8 @@ def init_server():
 
 def start_server():
     """Host the files from the entry field folder on a local web server and use port 8000 or higher. Update the GUI, and if the checkbutton is selected, open the server address in a default web browser."""
+    global server_up
+    server_up = False
     try:
         os.chdir(ent_folder.get())
     except FileNotFoundError:
@@ -72,15 +74,15 @@ def start_server():
             
 def kill_server():
     """Kill the started local web server and update the GUI."""
-    sys.exit(0)
-    """
-    httpd.shutdown()
+    #sys.exit(0)
+    #httpd.socket.close()
+    t2 = threading.Thread(target=httpd.shutdown)
+    t2.start()
     global server_up
     server_up = False
     lbl_status.config(text=f"❌ server stopped")
     btn_start.config(state="normal", command=start_server)
     btn_stop.config(state="disabled", command="")
-    """
 
 window = tk.Tk()
 window.title("Hosty")
