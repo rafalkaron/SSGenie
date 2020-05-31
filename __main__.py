@@ -13,7 +13,7 @@ import time
 import tkinter as tk
 from tkinter import filedialog
 
-__version__ = "1.1.1"
+__version__ = "1.2"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 server_up = False
@@ -53,7 +53,7 @@ def init_server():
             continue
 
 def start_server():
-    """Use the folder path from the entry field to run a local web server on port 8000 or higher, update the GUI, and open a web browser if the checkbutton is selected"""
+    """Host the files from the entry field folder on a local web server and use port 8000 or higher. Update the GUI, and if the checkbutton is selected, open the server address in a default web browser."""
     try:
         os.chdir(ent_folder.get())
     except FileNotFoundError:
@@ -71,12 +71,13 @@ def start_server():
             webbrowser.open(url=f"http://localhost:{str(port)}", new=1, autoraise=True)  
 
 def kill_server():
+    """Kill the started local web server and update the GUI."""
     httpd.shutdown()
+    global server_up
+    server_up = False
     lbl_status.config(text=f"🟥 server stopped")
     btn_start.config(state="normal", command=start_server)
     btn_stop.config(state="disabled", command="")
-    global server_up
-    server_up = False
 
 window = tk.Tk()
 window.title("Hosty")
