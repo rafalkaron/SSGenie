@@ -85,7 +85,7 @@ window.columnconfigure([0], minsize=150, weight=1)
 window.rowconfigure([1, 2], weight=1)
 
 frm_input = tk.Frame(master=window)
-input_lbl = tk.Label(text="📁 Directory to host ", font="default 14 bold", master=frm_input)
+input_lbl = tk.Label(text="Directory to host", font="default 14 bold", master=frm_input)
 btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
