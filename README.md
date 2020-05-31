@@ -10,7 +10,7 @@ The default address of the local web server is `localhost:8000`. If the default 
 *You can quickly host files on a local web server by running Hosty in an appropriate directory.*
 
 ### Before you begin
-1. Download the latest version of **Hosty** for your operating system. See [Latest Hosty Release](https://github.com/rafalkaron/Hosty/releases/latest).
+1. Download the latest version of **Hosty** for your operating system. See the [Latest Hosty Release](https://github.com/rafalkaron/Hosty/releases/latest).
 2. Unzip **Hosty**.
 
 ### Procedure
