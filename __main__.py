@@ -57,14 +57,14 @@ def start_server():
     try:
         os.chdir(ent_folder.get())
     except FileNotFoundError:
-        lbl_error.config(text=f"⚠️ directory does not exist")
+        lbl_error.config(text=f"❗directory does not exist")
     else:
         lbl_error.config(text="")
         t1 = threading.Thread(target=init_server, daemon=True)
         t1.start()
         while not server_up:
             time.sleep(1)
-        lbl_status.config(text=f"🟢 {server_status}")
+        lbl_status.config(text=f"✔️{server_status}")
         btn_start.config(state="disabled", command="")
         btn_stop.config(state="normal", command=kill_server)
         if preview.get() == 1:
@@ -90,15 +90,15 @@ btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
 frm_controls = tk.Frame(master=window)
-btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", command=start_server, master=frm_controls)
-btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", state="disabled", master=frm_controls)
+btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", borderwidth="4", command=start_server, master=frm_controls)
+btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", borderwidth="4", state="disabled", master=frm_controls)
 
 frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
 chkbtn_preview = tk.Checkbutton(text="Web browser preview", variable=preview, onvalue=1, master=frm_status)
 chkbtn_preview.select()
 lbl_error = tk.Label(font="TkFixedFont", master=frm_status)
-lbl_status = tk.Label(text=f"🟥 server not running", font="TkFixedFont", master=frm_status)
+lbl_status = tk.Label(text=f"❌ server not running", font="TkFixedFont", master=frm_status)
 
 frm_input.grid(row=0, column=0, padx="10", pady="10", sticky="we")
 input_lbl.pack(side=tk.LEFT)
