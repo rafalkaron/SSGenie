@@ -122,7 +122,7 @@ lbl_status.pack(side=tk.RIGHT)
 lbl_error.pack(side=tk.RIGHT)
 
 def main():
-    ent_folder.insert(0, exe_dir())
+    ent_folder.insert(0, os.path.normpath(os.path.expanduser('~/Downloads')))
     window.mainloop()
 
 if __name__ == '__main__':
