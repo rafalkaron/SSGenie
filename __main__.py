@@ -107,7 +107,7 @@ frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
 chkbtn_preview = tk.Checkbutton(text="Web browser preview", variable=preview, onvalue=1, master=frm_status)
 chkbtn_preview.select()
-btn_help = tk.Button(text="❔", command=open_help, master=frm_status)
+btn_help = tk.Button(text="?", command=open_help, font="default 12 bold", borderwidth="0", relief="flat", master=frm_status)
 lbl_error = tk.Label(font="TkFixedFont", master=frm_status)
 lbl_status = tk.Label(text=f"❌ server not running", font="TkFixedFont", master=frm_status)
 
