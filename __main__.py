@@ -100,7 +100,7 @@ btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
 frm_controls = tk.Frame(master=window)
-btn_start = tk.Button(text="Start Server", height="1", font="default 14 bold", borderwidth="2", command=start_server, master=frm_controls)
+btn_start = tk.Button(text="Start Server", height="2", font="default 12 bold", borderwidth="2", command=start_server, master=frm_controls)
 btn_stop = tk.Button(text="Stop Server", height="2", font="default 12 bold", borderwidth="2", state="disabled", master=frm_controls)
 
 frm_status = tk.Frame(master=window)
