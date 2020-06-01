@@ -100,14 +100,14 @@ btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
 frm_controls = tk.Frame(master=window)
-btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", borderwidth="4", command=start_server, master=frm_controls)
-btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", borderwidth="4", state="disabled", master=frm_controls)
+btn_start = tk.Button(text="Start Server", height="2", font="default 14 bold", borderwidth="2", command=start_server, master=frm_controls)
+btn_stop = tk.Button(text="Stop Server", height="2", font="default 14 bold", borderwidth="2", state="disabled", master=frm_controls)
 
 frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
 chkbtn_preview = tk.Checkbutton(text="Web browser preview", variable=preview, onvalue=1, master=frm_status)
 chkbtn_preview.select()
-btn_help = tk.Button(text="?", command=open_help, font="default 12 bold", borderwidth="0", relief="flat", master=frm_status)
+btn_help = tk.Button(text="?", command=open_help, font="default 12 bold", borderwidth="0", master=frm_status)
 lbl_error = tk.Label(font="TkFixedFont", master=frm_status)
 lbl_status = tk.Label(text=f"❌ server not running", font="TkFixedFont", master=frm_status)
 
