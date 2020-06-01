@@ -95,7 +95,7 @@ window.columnconfigure([0], minsize=150, weight=1)
 window.rowconfigure([1, 2], weight=1)
 
 frm_input = tk.Frame(master=window)
-input_lbl = tk.Label(text="Directory to host ", font="default 14 bold", master=frm_input)
+input_lbl = tk.Label(text="Directory to host ", font="default 12 bold", master=frm_input)
 btn_browse = tk.Button(text="Browse...", master=frm_input, command=browse_dir)
 ent_folder = tk.Entry(width="60", master=frm_input)
 
@@ -107,7 +107,7 @@ frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
 chkbtn_preview = tk.Checkbutton(text="Web browser preview", variable=preview, onvalue=1, master=frm_status)
 chkbtn_preview.select()
-btn_help = tk.Button(text="?", command=open_help, font="default 12 bold", borderwidth="0", master=frm_status)
+btn_help = tk.Button(text="?", command=open_help, font="default 12 bold", master=frm_status)
 lbl_error = tk.Label(font="TkFixedFont", master=frm_status)
 lbl_status = tk.Label(text=f"❌ server not running", font="TkFixedFont", master=frm_status)
 
