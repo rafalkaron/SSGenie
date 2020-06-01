@@ -14,7 +14,7 @@ import time
 import tkinter as tk
 from tkinter import filedialog
 
-__version__ = "1.2.1"
+__version__ = "1.2.2"
 __author__ = "Rafał Karoń <rafalkaron@gmail.com>"
 
 server_up = False
@@ -35,6 +35,9 @@ def browse_dir():
     ent_folder.insert(0, window.filename)
     os.chdir(window.filename)
     return window.filename
+
+def open_help():
+    webbrowser.open(url=f"https://www.github.com/rafalkaron/Hosty", new=1, autoraise=True)
 
 def init_server():
     """Start a local web server. Use port 8000 or higher."""
@@ -104,6 +107,7 @@ frm_status = tk.Frame(master=window)
 preview = tk.IntVar()
 chkbtn_preview = tk.Checkbutton(text="Web browser preview", variable=preview, onvalue=1, master=frm_status)
 chkbtn_preview.select()
+btn_help = tk.Button(text="❔", command=open_help, master=frm_status)
 lbl_error = tk.Label(font="TkFixedFont", master=frm_status)
 lbl_status = tk.Label(text=f"❌ server not running", font="TkFixedFont", master=frm_status)
 
@@ -118,6 +122,7 @@ btn_stop.pack(side=tk.LEFT)
 
 frm_status.grid(row=3, column=0, sticky="we", padx="10", pady="10")
 chkbtn_preview.pack(side=tk.LEFT)
+btn_help.pack(side=tk.RIGHT)
 lbl_status.pack(side=tk.RIGHT)
 lbl_error.pack(side=tk.RIGHT)
 
