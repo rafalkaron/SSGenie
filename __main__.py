@@ -10,6 +10,7 @@ import os
 import sys
 import threading
 import time
+import base64
 #from tkinter import * # This may be needed while building a macOS app. Verify.
 import tkinter as tk
 from tkinter import filedialog
@@ -31,9 +32,10 @@ def exe_dir():
 def browse_dir():
     """Return the path to the directory of your choice."""
     window.filename = filedialog.askdirectory(initialdir=os.path.normpath(os.path.expanduser('~/Downloads')))
-    ent_folder.delete(0, tk.END)
-    ent_folder.insert(0, window.filename)
-    os.chdir(window.filename)
+    if window.filename != "":
+        ent_folder.delete(0, tk.END)
+        ent_folder.insert(0, window.filename)
+        os.chdir(window.filename)
     return window.filename
 
 def open_help():
@@ -91,6 +93,8 @@ def kill_server():
 
 window = tk.Tk()
 window.title("Hosty")
+#window.tk.call('wm', 'iconphoto', window._w, tk.PhotoImage(file=icon))
+#window.iconbitmap(default="C:\LocalFiles\GitHub\ModestHost\media\icon\ModestHost2.ico", ) #embed
 window.columnconfigure([0], minsize=150, weight=1)
 window.rowconfigure([1, 2], weight=1)
 
