@@ -32,7 +32,7 @@ def exe_dir():
 def browse_dir():
     """Return the path to the directory of your choice."""
     window.filename = filedialog.askdirectory(initialdir=os.path.normpath(os.path.expanduser('~/Downloads')))
-    if window.filename != "":
+    if window.filename:
         ent_folder.delete(0, tk.END)
         ent_folder.insert(0, window.filename)
         os.chdir(window.filename)
