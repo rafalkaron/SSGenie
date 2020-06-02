@@ -18,12 +18,12 @@ The default address of the local web server is `localhost:8000`. If the default 
 1. If needed, accept every security prompt. See [Accepting macOS Security Prompts](https://github.com/rafalkaron/Hosty/wiki/Accepting-macOS-Security-Prompts) or [Accepting Windows Security Prompts](https://github.com/rafalkaron/Hosty/wiki/Accepting-Windows-Security-Prompts).  
 **Result:** Your default web browser opens the local web server address in a new tab.
 1. Fill in the **Directory to host** field with the directory that you want to host by doing one of the following:  
-**Note:** The default directory is the **Hosty** directory.
+**Note:** The default directory is your **Downloads** directory.
     * Edit the **Directory to host** field.
     * Click **Browse** and select a directory.
 1. **Optional:** If you do not want to automatically open the web server address in your web browser, clear the **Web browser preview** check box.
-1. Click **Start Server** and accept any security prompts.
-2. If you want to host another directory, click **Stop Server** and repeat the procedure.
+2. Click **Start Server** and accept any security prompts.
+3. If you want to host another directory, click **Stop Server** and repeat the procedure.
 
 ### Next steps
 * To finish, close **Hosty**.
